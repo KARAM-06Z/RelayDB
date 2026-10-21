@@ -9,14 +9,13 @@ export default defineConfig([
   globalIgnores(['dist']),
   {
     files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
+    extends: [js.configs.recommended, tseslint.configs.recommended, reactHooks.configs.flat.recommended, reactRefresh.configs.vite],
     languageOptions: {
-      globals: globals.browser,
+      globals: globals.browser
     },
-  },
+    rules: {
+      semi: ['error', 'never'],
+      '@typescript-eslint/no-explicit-any': 'off'
+    }
+  }
 ])
