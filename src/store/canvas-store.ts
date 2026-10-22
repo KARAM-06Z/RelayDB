@@ -1,0 +1,87 @@
+import { create } from 'zustand'
+import { Theme } from '../core/enums/theme'
+import type { TViewportState } from '../core/meta/t-viewport-state'
+
+type TCanvasStore = {
+  viewport: TViewportState
+  theme: Theme
+  setViewport: (viewport: TViewportState) => void
+  pan: (dx: number, dy: number) => void
+  zoom: (delta: number, focalPoint?: { clientX: number; clientY: number }) => void
+  resetViewport: () => void
+  setTheme: (theme: Theme) => void
+  toggleTheme: () => void
+}
+
+const MIN_SCALE = 0.1
+const MAX_SCALE = 3.0
+
+const useCanvasStore = create<TCanvasStore>((set, get) => ({
+  viewport: {
+    panX: 0,
+    panY: 0,
+    scale: 1,
+  },
+  theme: Theme.DARK,
+
+  setViewport: (viewport: TViewportState) => {
+    set({ viewport })
+  },
+
+  pan: (dx: number, dy: number) => {
+    set(state => ({
+      viewport: {
+        ...state.viewport,
+        panX: state.viewport.panX + dx,
+        panY: state.viewport.panY + dy,
+      },
+    }))
+  },
+
+  zoom: (delta: number, focalPoint?: { clientX: number; clientY: number }) => {
+    const { viewport } = get()
+    const nextScale = Math.min(Math.max(viewport.scale + delta, MIN_SCALE), MAX_SCALE)
+
+    if (nextScale === viewport.scale) return
+
+    if (!focalPoint) {
+      set({ viewport: { ...viewport, scale: nextScale } })
+      return
+    }
+
+    const scaleRatio = nextScale / viewport.scale
+    const nextPanX = focalPoint.clientX - (focalPoint.clientX - viewport.panX) * scaleRatio
+    const nextPanY = focalPoint.clientY - (focalPoint.clientY - viewport.panY) * scaleRatio
+
+    set({
+      viewport: {
+        panX: nextPanX,
+        panY: nextPanY,
+        scale: nextScale,
+      },
+    })
+  },
+
+  resetViewport: () => {
+    set({
+      viewport: {
+        panX: 0,
+        panY: 0,
+        scale: 1,
+      },
+    })
+  },
+
+  setTheme: (theme: Theme) => {
+    document.documentElement.classList.toggle('dark', theme === Theme.DARK)
+    set({ theme })
+  },
+
+  toggleTheme: () => {
+    const nextTheme = get().theme === Theme.DARK ? Theme.LIGHT : Theme.DARK
+    document.documentElement.classList.toggle('dark', nextTheme === Theme.DARK)
+    set({ theme: nextTheme })
+  },
+}))
+
+export { useCanvasStore }

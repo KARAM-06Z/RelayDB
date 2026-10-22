@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -22,6 +22,14 @@
   --wire-default: rgba(148, 163, 184, 0.35);
 }
 
+.bg-canvas {
+  background-color: var(--canvas-bg);
+}
+
+.bg-grid-dots {
+  background-image: radial-gradient(var(--canvas-grid) 1.5px, transparent 1.5px);
+}
+
 @layer base {
   html,
   body {
@@ -33,7 +41,9 @@
     color: var(--text-primary);
     overflow: hidden;
     user-select: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
