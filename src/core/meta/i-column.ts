@@ -1,5 +1,5 @@
 import { KeyType } from '../enums/key-type'
-import type { TNullable } from './t-shared'
+import type { TForeignKeyTarget, TNullable, TOptional } from './t-shared'
 
 interface IColumn {
   id: string
@@ -8,6 +8,7 @@ interface IColumn {
   keyType: KeyType
   isNullable: boolean
   defaultValue: TNullable<string>
+  foreignKeyTarget: TOptional<TForeignKeyTarget>
 }
 
 export type { IColumn }

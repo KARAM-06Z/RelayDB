@@ -1,7 +1,7 @@
 import { Base } from './base'
 import { KeyType } from '../enums/key-type'
 import type { IColumn } from '../meta/i-column'
-import type { TNullable } from '../meta/t-shared'
+import type { TForeignKeyTarget, TNullable, TOptional } from '../meta/t-shared'
 
 class Column extends Base<IColumn> implements IColumn {
   id!: string
@@ -10,14 +10,16 @@ class Column extends Base<IColumn> implements IColumn {
   keyType!: KeyType
   isNullable!: boolean
   defaultValue!: TNullable<string>
+  foreignKeyTarget!: TOptional<TForeignKeyTarget>
 
-  deserialize({ id = '', name = null, dataType = null, keyType = KeyType.NONE, isNullable = false, defaultValue = null }: Partial<IColumn> = {}): void {
+  deserialize({ id = '', name = null, dataType = null, keyType = KeyType.NONE, isNullable = false, defaultValue = null, foreignKeyTarget }: Partial<IColumn> = {}): void {
     this.primaryKey('id', id)
     this.name = name
     this.dataType = dataType
     this.keyType = keyType
     this.isNullable = isNullable
     this.defaultValue = defaultValue
+    this.foreignKeyTarget = foreignKeyTarget
   }
 }
 
