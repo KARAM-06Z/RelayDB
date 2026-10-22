@@ -33,14 +33,14 @@ function InfiniteCanvas({ children }: TInfiniteCanvasProps) {
   }, [zoom])
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    const isBackground = e.target === containerRef.current || (e.target as HTMLElement).dataset.canvasBg === 'true'
-    const isMiddleClick = e.button === 1
+    if (e.button !== 0 && e.button !== 1) return
 
-    if (isBackground || isMiddleClick) {
-      isPanningRef.current = true
-      lastPosRef.current = { x: e.clientX, y: e.clientY }
-      e.currentTarget.setPointerCapture(e.pointerId)
-    }
+    const isCard = (e.target as HTMLElement).closest('[data-canvas-node="true"]')
+    if (isCard && e.button === 0) return
+
+    isPanningRef.current = true
+    lastPosRef.current = { x: e.clientX, y: e.clientY }
+    e.currentTarget.setPointerCapture(e.pointerId)
   }
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -87,7 +87,7 @@ function InfiniteCanvas({ children }: TInfiniteCanvasProps) {
           transformOrigin: '0 0'
         }}
       >
-        <div className="relative w-full h-full pointer-events-auto">{children}</div>
+        <div className="relative w-full h-full">{children}</div>
       </div>
     </div>
   )
