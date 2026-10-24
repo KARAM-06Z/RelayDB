@@ -69,25 +69,23 @@ function InfiniteCanvas({ children }: TInfiniteCanvasProps) {
   return (
     <div
       ref={containerRef}
-      data-canvas-bg="true"
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
-      className="relative w-screen h-screen overflow-hidden select-none cursor-grab active:cursor-grabbing bg-canvas bg-grid-dots"
+      className="canvas"
       style={{
         backgroundSize: `${gridSize}px ${gridSize}px`,
         backgroundPosition: `${panX}px ${panY}px`
       }}
     >
       <div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
+        className="canvas-content"
         style={{
-          transform: `translate3d(${panX}px, ${panY}px, 0) scale(${scale})`,
-          transformOrigin: '0 0'
+          transform: `translate3d(${panX}px, ${panY}px, 0) scale(${scale})`
         }}
       >
-        <div className="relative w-full h-full">{children}</div>
+        <div className="children">{children}</div>
       </div>
     </div>
   )

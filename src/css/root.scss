@@ -1,0 +1,59 @@
+:root {
+  /* Surfaces & Canvas */
+  --bg-canvas: #f8fafc;
+  --bg-surface: rgba(255, 255, 255, 0.95);
+  --border: #e2e8f0;
+  --canvas-grid: rgba(0, 0, 0, 0.07);
+  --wire-default: rgba(100, 116, 139, 0.45);
+
+  /* Typography */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-accent: #0891b2;
+  --text-success: #059669;
+  --text-warning: #d97706;
+  --text-danger: #dc2626;
+
+  /* Functional & Status (DML & Badges) */
+  --primary: #0284c7;
+  --secondary: #64748b;
+  --accent: #06b6d4;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* Neutrals */
+  --gray: #94a3b8;
+  --light-gray: #f1f5f9;
+}
+
+.dark {
+  /* Surfaces & Canvas */
+  --bg-canvas: #0b0f19;
+  --bg-surface: rgba(15, 23, 42, 0.92);
+  --border: rgba(51, 65, 85, 0.6);
+  --canvas-grid: rgba(255, 255, 255, 0.07);
+  --wire-default: rgba(148, 163, 184, 0.35);
+
+  /* Typography */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-accent: #22d3ee;
+  --text-success: #34d399;
+  --text-warning: #fbbf24;
+  --text-danger: #f87171;
+
+  /* Functional & Status (Tailored for Dark Canvas Contrast) */
+  --primary: #38bdf8;
+  --secondary: #94a3b8;
+  --accent: #22d3ee;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+
+  /* Neutrals */
+  --gray: #64748b;
+  --light-gray: #1e293b;
+}
