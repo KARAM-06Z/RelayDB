@@ -1,0 +1,10 @@
+@use './abstracts' as *;
+
+@each $size, $value in $sizes {
+  .circle-#{$size} {
+    display: inline-block;
+    border-radius: 9999px;
+    width: $value;
+    height: $value;
+  }
+}

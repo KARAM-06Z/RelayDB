@@ -13,14 +13,14 @@ type TCanvasStore = {
   toggleTheme: () => void
 }
 
-const MIN_SCALE = 0.1
+const MIN_SCALE = 0.3
 const MAX_SCALE = 3.0
 
 const useCanvasStore = create<TCanvasStore>((set, get) => ({
   viewport: {
     panX: 0,
     panY: 0,
-    scale: 1,
+    scale: 1
   },
   theme: Theme.DARK,
 
@@ -33,8 +33,8 @@ const useCanvasStore = create<TCanvasStore>((set, get) => ({
       viewport: {
         ...state.viewport,
         panX: state.viewport.panX + dx,
-        panY: state.viewport.panY + dy,
-      },
+        panY: state.viewport.panY + dy
+      }
     }))
   },
 
@@ -57,8 +57,8 @@ const useCanvasStore = create<TCanvasStore>((set, get) => ({
       viewport: {
         panX: nextPanX,
         panY: nextPanY,
-        scale: nextScale,
-      },
+        scale: nextScale
+      }
     })
   },
 
@@ -67,8 +67,8 @@ const useCanvasStore = create<TCanvasStore>((set, get) => ({
       viewport: {
         panX: 0,
         panY: 0,
-        scale: 1,
-      },
+        scale: 1
+      }
     })
   },
 
@@ -81,7 +81,7 @@ const useCanvasStore = create<TCanvasStore>((set, get) => ({
     const nextTheme = get().theme === Theme.DARK ? Theme.LIGHT : Theme.DARK
     document.documentElement.classList.toggle('dark', nextTheme === Theme.DARK)
     set({ theme: nextTheme })
-  },
+  }
 }))
 
 export { useCanvasStore }

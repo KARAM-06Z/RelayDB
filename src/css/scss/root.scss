@@ -1,3 +1,5 @@
+@use './abstracts' as *;
+
 :root {
   /* Surfaces & Canvas */
   --bg-canvas: #f8fafc;
@@ -6,22 +8,23 @@
   --canvas-grid: rgba(0, 0, 0, 0.07);
   --wire-default: rgba(100, 116, 139, 0.45);
 
-  /* Typography */
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  --text-accent: #0891b2;
-  --text-success: #059669;
-  --text-warning: #d97706;
-  --text-danger: #dc2626;
+  /* Unified Status & Typography Colors */
+  --primary: #0f172a;
+  --secondary: #334155;
+  --muted: #64748b;
+  --info: #0891b2;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
 
-  /* Functional & Status (DML & Badges) */
-  --primary: #0284c7;
-  --secondary: #64748b;
-  --accent: #06b6d4;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
+  /* Accent Background Tints (Subtle Tints for Badges/Pills) */
+  --acc-primary: rgba(2, 132, 199, 0.12);
+  --acc-secondary: rgba(100, 116, 139, 0.12);
+  --acc-muted: rgba(100, 116, 139, 0.08);
+  --acc-info: rgba(8, 145, 178, 0.12);
+  --acc-success: rgba(5, 150, 105, 0.12);
+  --acc-warning: rgba(217, 119, 6, 0.12);
+  --acc-danger: rgba(220, 38, 38, 0.12);
 
   /* Neutrals */
   --gray: #94a3b8;
@@ -40,22 +43,23 @@
   --canvas-grid: rgba(255, 255, 255, 0.07);
   --wire-default: rgba(148, 163, 184, 0.35);
 
-  /* Typography */
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-accent: #22d3ee;
-  --text-success: #34d399;
-  --text-warning: #fbbf24;
-  --text-danger: #f87171;
-
-  /* Functional & Status (Tailored for Dark Canvas Contrast) */
-  --primary: #38bdf8;
-  --secondary: #94a3b8;
-  --accent: #22d3ee;
+  /* Unified Status & Typography Colors */
+  --primary: #f8fafc;
+  --secondary: #cbd5e1;
+  --muted: #94a3b8;
+  --info: #22d3ee;
   --success: #34d399;
   --warning: #fbbf24;
   --danger: #f87171;
+
+  /* Accent Background Tints (15% Tints for Luminous Contrast) */
+  --acc-primary: rgba(56, 189, 248, 0.15);
+  --acc-secondary: rgba(148, 163, 184, 0.15);
+  --acc-muted: rgba(148, 163, 184, 0.1);
+  --acc-info: rgba(34, 211, 238, 0.15);
+  --acc-success: rgba(52, 211, 153, 0.15);
+  --acc-warning: rgba(251, 191, 36, 0.15);
+  --acc-danger: rgba(248, 113, 113, 0.15);
 
   /* Neutrals */
   --gray: #64748b;
@@ -70,7 +74,7 @@
     width: 100%;
     height: 100%;
     background-color: var(--bg-canvas);
-    color: var(--text-primary);
+    color: var(--primary);
     overflow: hidden;
     user-select: none;
     transition:
@@ -78,11 +82,24 @@
       color 0.2s ease;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: var(--font-sans);
   }
 
   #root {
     width: 100%;
     height: 100%;
+  }
+}
+
+@each $accent in $accents {
+  .text-#{$accent} {
+    color: var(--#{$accent});
+  }
+
+  .bg-#{$accent} {
+    background-color: var(--#{$accent});
+  }
+
+  .bg-acc-#{$accent} {
+    background-color: var(--acc-#{$accent});
   }
 }
