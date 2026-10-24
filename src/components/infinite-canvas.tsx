@@ -85,7 +85,7 @@ function InfiniteCanvas({ children }: TInfiniteCanvasProps) {
           transform: `translate3d(${panX}px, ${panY}px, 0) scale(${scale})`
         }}
       >
-        <div className="children">{children}</div>
+        <div className="canvas-children">{children}</div>
       </div>
     </div>
   )
